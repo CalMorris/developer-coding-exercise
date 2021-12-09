@@ -1,7 +1,36 @@
 const express = require('express')
 const { getTopWords } = require('./utils/tags')
 const app = express()
-const rootPostDir = './server/assets/posts'
+const rootPostDir = './server/assets/posts' // these are the blog files
+
+
+// this is code that i have added
+const fs = require('fs')
+const path = require('path')
+const posts = '../assets/posts/' 
+
+// reads a single post
+function getPostContent (postName, postLocation = posts) {
+  const post = path.join(__dirname, postLocation, `${postName}.md`)
+  const postContent = fs.readFileSync(post, 'utf8');
+  return postContent
+}
+  
+function getPosts (postDir = posts) {
+  const dir = path.join(__dirname, postDir)
+  const postFiles = fs.readdirSync(dir)
+
+  // format the title and slug
+  const slugTitle = postFiles.map(file => {
+    const slug = file.replace('.md', '')
+    const title = slug.split('-').join(' ')
+    return {title, slug}
+  })
+
+  return slugTitle
+}
+
+
 
 /**
  *  Returns the detail of an individual post in json, formatted as:
@@ -12,22 +41,19 @@ const rootPostDir = './server/assets/posts'
  *  }
  * }
  */
+
+
+
 app.get('/post/:slug', function (req, res) {
-  // ... fill in your own code ...
+    const postName = req.params.slug
+    const postContent= getPostContent(postName)
+    res.json('postContent')
 })
 
-/**
- * Returns a json array of all posts, formatted as:
- * [
- *  {
- *    title: <article's title>,
- *    slug: <article's slug>
- *  },
- *  ...
- * ]
- */
+
 app.get('/posts', function (req, res) {
-  // ... fill in you own code ...
+  const postList = getPosts()
+  res.json(postList)
 })
 
 app.listen(3000, function () {
