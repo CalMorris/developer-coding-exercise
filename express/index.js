@@ -20,10 +20,11 @@ function getPosts (postDir = posts) {
   const dir = path.join(__dirname, postDir)
   const postFiles = fs.readdirSync(dir)
 
-  // format the title and slug
   const slugTitle = postFiles.map(file => {
     const slug = file.replace('.md', '')
-    const title = slug.split('-').join(' ')
+    const splitSlug = file.split('-')
+    const titleToUppercase = splitSlug.map(word => word[0].toUpperCase() + word.slice(1))
+    const title = titleToUppercase.join(' ').replace('.md', '')
     return {title, slug}
   })
 

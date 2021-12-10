@@ -25,11 +25,14 @@ function getPostContent(postName) {
 function getPosts() {
   var postDir = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : posts;
   var dir = path.join(__dirname, postDir);
-  var postFiles = fs.readdirSync(dir); // format the title and slug
-
+  var postFiles = fs.readdirSync(dir);
   var slugTitle = postFiles.map(function (file) {
     var slug = file.replace('.md', '');
-    var title = slug.split('-').join(' ');
+    var splitSlug = file.split('-');
+    var titleToUppercase = splitSlug.map(function (word) {
+      return word[0].toUpperCase() + word.slice(1);
+    });
+    var title = titleToUppercase.join(' ').replace('.md', '');
     return {
       title: title,
       slug: slug
