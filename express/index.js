@@ -47,8 +47,7 @@ function getPosts (postDir = posts) {
 
 app.get('/post/:slug', function (req, res) {
     const postName = req.params.slug
-    console.log(postName)
-    const postContent= getPostContent(postName)
+    const postContent= getPostContent(postName.slice(1))
     res.json(postContent)
 })
 

@@ -53,8 +53,7 @@ function getPosts() {
 
 app.get('/post/:slug', function (req, res) {
   var postName = req.params.slug;
-  console.log(postName);
-  var postContent = getPostContent(postName);
+  var postContent = getPostContent(postName.slice(1));
   res.json(postContent);
 });
 app.get('/posts', function (req, res) {

@@ -6,8 +6,10 @@ import { Route , Routes} from 'react-router-dom'
 export default function App () {
 return (<>
   <Routes>
-    <Route path='/' element={<Posts/>}></Route>
-    <Route path='/post' element={<Post/>}></Route>
-  </Routes>
+    {/* <Route exact path='/' component={Posts}></Route>
+    <Route exact path='/:post' component={Post}> */}
+    <Route path='/' element={<Posts/>} />
+    <Route path='/:post' element={<Post/>} />
+    </Routes> 
   </>
 )}
