@@ -1,13 +1,21 @@
-import React from 'react';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { HashRouter as Router, BrowserRouter } from 'react-router-dom'
 import App from './components/App'
-import { HashRouter as Router } from 'react-router-dom'
-
 
 document.addEventListener('DOMContentLoaded', () => {
-  render(
-    <Router>
-      <App />
-    </Router>,
-    document.getElementById('app')
+  ReactDOM.render(
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+    , document.getElementById('app')
   )
 })
+// document.addEventListener('DOMContentLoaded', () => {
+//   ReactDOM.render(
+//         <Router>
+//           <App />
+//         </Router>
+//     , document.getElementById('app')
+//   )
+// })

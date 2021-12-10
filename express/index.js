@@ -47,8 +47,9 @@ function getPosts (postDir = posts) {
 
 app.get('/post/:slug', function (req, res) {
     const postName = req.params.slug
+    console.log(postName)
     const postContent= getPostContent(postName)
-    res.json('postContent')
+    res.json(postContent)
 })
 
 
@@ -60,3 +61,5 @@ app.get('/posts', function (req, res) {
 app.listen(3000, function () {
   console.log('Dev app listening on port 3000!')
 })
+
+app.use(express.static(path.join(__dirname, './public')))

@@ -53,8 +53,9 @@ function getPosts() {
 
 app.get('/post/:slug', function (req, res) {
   var postName = req.params.slug;
+  console.log(postName);
   var postContent = getPostContent(postName);
-  res.json('postContent');
+  res.json(postContent);
 });
 app.get('/posts', function (req, res) {
   var postList = getPosts();
@@ -63,3 +64,4 @@ app.get('/posts', function (req, res) {
 app.listen(3000, function () {
   console.log('Dev app listening on port 3000!');
 });
+app.use(express["static"](path.join(__dirname, './public')));
