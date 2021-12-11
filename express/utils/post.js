@@ -1,27 +1,36 @@
 const fs = require('fs')
 const path = require('path')
-const posts = '../../assets/posts/' 
+const posts = '../../assets/posts/'
+const { getTopWords } = require('./tags')
 
-// reads a single post
+function readPost (postName, postLocation = posts) {
+  const post = path.join(__dirname, postLocation, `${postName}`)
+  return fs.readFileSync(post, 'utf8');
+}
+
 function getPost (postName, postLocation = posts) {
-  const post = path.join(__dirname, postLocation, `${postName}.md`)
-  const content = fs.readFileSync(post, 'utf8');
-  const tags = ['word1','word2','word3','word4','word5']
+  const fileContent = readPost(`${postName}.md`)
+  const seperateMetaContent = fileContent.split('===')
+  const content = seperateMetaContent[seperateMetaContent.length - 1]
+  // const tags = ['word1','word2','word3','word4','word5']
+  const tags = getTopWords(content)
   return {post: {content, tags}}
 }
   
 function getPosts (postDir = posts) {
   const dir = path.join(__dirname, postDir)
   const postFiles = fs.readdirSync(dir)
-  
-  const slugTitle = postFiles.map(file => {
-    const slug = file.replace('.md', '')
-    const splitSlug = file.split('-')
-    const titleToUppercase = splitSlug.map(word => word[0].toUpperCase() + word.slice(1))
-    const title = titleToUppercase.join(' ').replace('.md', '')
+
+  const titleSlug = postFiles.map(post => {
+    const readPostFile = readPost(post)
+    const getMetadata = readPostFile.split('===')[1]
+    const splitMetadata = getMetadata.split('\n')
+    const title = splitMetadata[1].replace('Title: ', '')
+    const slug = post.replace('.md', '')
     return {title, slug}
   })
-  return slugTitle
+
+  return titleSlug
 }
 
   module.exports = {

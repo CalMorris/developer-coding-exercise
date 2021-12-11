@@ -31,6 +31,15 @@ const stopWords = [
  */
 function getTopWords (bodyText, tagCount = 5) {
   // Write your own implementation
+  const words = bodyText.split(' ')
+
+  let counts = {}
+  for (let i = 0; i < words.length; i++) {
+    counts[words[i]] = 1 + (counts[words[i]] || 0)
+  }
+  
+  // const sortCounts = counts.sort((a,b) => Object.Values(a)[0] - Object.Values(a)[1])
+  return counts
   
 }
 
