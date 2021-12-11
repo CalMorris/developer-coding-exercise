@@ -45,7 +45,13 @@ function getTopWords (bodyText, tagCount = 5) {
   
   const sortKeyValues = keyValueArr.sort((a,b) => b[1] - a[1])
   const filterKeyValues = sortKeyValues.filter(arr => !stopWords.includes(arr[0]))
-  return filterKeyValues
+  
+  const topFiveTags = filterKeyValues.map((word, i) => {
+    if (i < 5) {
+      return word[0]
+    }
+  })
+  return topFiveTags
   
 }
 
