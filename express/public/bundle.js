@@ -93,31 +93,57 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // import { Markup } from 'react-render-markup';
 
 function Post() {
+  var params = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)().post;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       post = _useState2[0],
       setPost = _useState2[1];
 
-  var params = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)().post;
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      title = _useState4[0],
+      setTitle = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      author = _useState6[0],
+      setAuthor = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      e = _useState8[0],
+      setE = _useState8[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    (0,_apis__WEBPACK_IMPORTED_MODULE_1__.getBlogPost)(params).then(function (result) {
-      setPost(result);
+    (0,_apis__WEBPACK_IMPORTED_MODULE_1__.getBlogPost)(params).then(function (_ref) {
+      var _splitMetadataContent;
+
+      var post = _ref.post;
+      var content = post.content,
+          tags = post.tags; // parses the content and assign's to react state
+
+      var splitMetadataContent = content.split('===');
+      var splitByMetadataTitle = (_splitMetadataContent = splitMetadataContent[1]) === null || _splitMetadataContent === void 0 ? void 0 : _splitMetadataContent.split('\n');
+      var postTitle = splitByMetadataTitle[1].replace('Title: ', '');
+      var postAuthor = splitByMetadataTitle[2];
+      var postBody = marked__WEBPACK_IMPORTED_MODULE_2__.marked.parse(splitMetadataContent[splitMetadataContent.length - 1]);
+      setTitle(postTitle);
+      setAuthor(postAuthor);
+      setPost(postBody);
+      setE(content);
     })["catch"](function (error) {
       return console.log(error);
     });
   }, []);
-  var splitMetadataContent = post.split('===');
-  var splitByMetadataTitle = splitMetadataContent[1] ? splitMetadataContent[1].split('\n') : null;
-  var postBody = marked__WEBPACK_IMPORTED_MODULE_2__.marked.parse(splitMetadataContent[splitMetadataContent.length - 1]);
-  console.log(splitByMetadataTitle);
+  var test = e === null || e === void 0 ? void 0 : e.split('/n');
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
     to: "/"
-  }, "Return Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "Return Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     dangerouslySetInnerHTML: {
-      __html: postBody
+      __html: post
     }
   }));
 }
@@ -162,8 +188,8 @@ function Home() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_apis__WEBPACK_IMPORTED_MODULE_1__.getBlogPosts)().then(function (posts) {
       setBlogPosts(posts);
-    })["catch"](function (e) {
-      return console.log(e);
+    })["catch"](function (error) {
+      return console.log(error);
     });
   }, []);
   var posts = blogPosts.map(function (post) {
@@ -42081,19 +42107,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/App */ "./client/components/App.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
- // import { BrowserRouter } from 'react-router-dom'
 
 
- // document.addEventListener('DOMContentLoaded', () => {
-//   ReactDOM.render(
-//         // <BrowserRouter>
-//         <Router>
-//           <App />
-//         </Router>
-//         // {/* </BrowserRouter> */}
-//     , document.getElementById('app')
-//   )
-// })
 
 document.addEventListener('DOMContentLoaded', function () {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_App__WEBPACK_IMPORTED_MODULE_2__["default"], null)), document.getElementById('app'));

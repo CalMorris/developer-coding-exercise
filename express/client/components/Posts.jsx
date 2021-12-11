@@ -2,8 +2,6 @@ import React, {useState, useEffect} from "react";
 import {getBlogPosts} from '../apis'
 import { Link } from "react-router-dom";
 
-
-
 export default function Home () {
   const [blogPosts, setBlogPosts] = useState([])
 
@@ -11,7 +9,7 @@ export default function Home () {
     getBlogPosts()
     .then(posts => {
       setBlogPosts(posts)})
-    .catch(e => console.log(e))
+    .catch((error) => console.log(error))
   },[])
 
   const posts = blogPosts.map(post => {

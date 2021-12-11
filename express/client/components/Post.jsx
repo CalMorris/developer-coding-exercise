@@ -1,37 +1,43 @@
 import React, {useState, useEffect} from 'react'
 import {getBlogPost} from '../apis'
 import { useParams, Link } from "react-router-dom";
-
 import { marked } from 'marked'
-// import { Markup } from 'react-render-markup';
 
 
 export default function Post () {
-  const [post, setPost] = useState('')
   const params = useParams().post;
+  const [post, setPost] = useState('')
+  const [title, setTitle] = useState('')
+  const [author, setAuthor] = useState('')
+
+  const [e, setE] = useState('')
 
   useEffect(() => {
     getBlogPost(params)
-    .then (result => {
-      setPost(result)})
+    .then (({post}) => {
+      const {content, tags} = post
+
+      // parses the content and assign's to react state
+      const splitMetadataContent = content.split('===')
+      const splitByMetadataTitle = splitMetadataContent[1]?.split('\n') 
+      const postTitle = splitByMetadataTitle[1].replace('Title: ', '')
+      const postAuthor = splitByMetadataTitle[2]
+      const postBody = marked.parse(splitMetadataContent[splitMetadataContent.length - 1]);
+      setTitle(postTitle)
+      setAuthor(postAuthor)
+      setPost(postBody)
+      setE(content)
+    })
     .catch(error => console.log(error))
   }, [])
 
-  const splitMetadataContent = post.split('===')
-
-  const splitByMetadataTitle = splitMetadataContent[1]?splitMetadataContent[1].split('\n') : null
-
-  const postBody = marked.parse(splitMetadataContent[splitMetadataContent.length - 1]);
-
-  console.log(splitByMetadataTitle)
+  const test = e?.split('/n')
 
   return (<> 
-  <Link to='/'>Return Home</Link>
-
-<h1></h1>
-<h2></h2>
-  <div dangerouslySetInnerHTML={{ __html: postBody }}
-  />
+    <Link to='/'>Return Home</Link>
+    <h1>{title}</h1>
+    <h3>{author}</h3>
+    <div dangerouslySetInnerHTML={{ __html: post }}/>
   </>
   )
 }
