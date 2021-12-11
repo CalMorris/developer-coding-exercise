@@ -37,9 +37,14 @@ function getTopWords (bodyText, tagCount = 5) {
   for (let i = 0; i < words.length; i++) {
     counts[words[i]] = 1 + (counts[words[i]] || 0)
   }
+
+  const keyValueArr = Object.entries(counts)
+  // for (const [key, value] of Object.entries(counts)) {
+  //   keyValueArr.push( {`${key}: ${value}`} );
+  // }
   
-  // const sortCounts = counts.sort((a,b) => Object.Values(a)[0] - Object.Values(a)[1])
-  return counts
+  const sortKeyValues = keyValueArr.sort((a,b) => a[1] - b[1])
+  return sortKeyValues
   
 }
 
