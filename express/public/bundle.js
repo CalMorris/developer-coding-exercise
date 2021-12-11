@@ -78,8 +78,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var marked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! marked */ "./node_modules/marked/lib/marked.esm.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -111,15 +109,15 @@ function Post() {
       return console.log(error);
     });
   }, []);
-  var html = marked__WEBPACK_IMPORTED_MODULE_2__.marked.parse(post);
-  console.log(post);
-  var splitMetadataParagraph = post.split('#');
-  console.log(_typeof(html));
+  var splitMetadataContent = post.split('===');
+  var splitByMetadataTitle = splitMetadataContent[1] ? splitMetadataContent[1].split('\n') : null;
+  var postBody = marked__WEBPACK_IMPORTED_MODULE_2__.marked.parse(splitMetadataContent[splitMetadataContent.length - 1]);
+  console.log(splitByMetadataTitle);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
     to: "/"
-  }, "Return Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, html), html, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, "Return Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     dangerouslySetInnerHTML: {
-      __html: html
+      __html: postBody
     }
   }));
 }
@@ -163,7 +161,6 @@ function Home() {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     (0,_apis__WEBPACK_IMPORTED_MODULE_1__.getBlogPosts)().then(function (posts) {
-      console.log(posts);
       setBlogPosts(posts);
     })["catch"](function (e) {
       return console.log(e);

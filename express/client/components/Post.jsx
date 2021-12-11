@@ -17,20 +17,20 @@ export default function Post () {
     .catch(error => console.log(error))
   }, [])
 
-  const html = marked.parse(post);
-  console.log(post)
+  const splitMetadataContent = post.split('===')
 
-  const splitMetadataParagraph = post.split('#')
-  console.log(typeof html)
+  const splitByMetadataTitle = splitMetadataContent[1]?splitMetadataContent[1].split('\n') : null
 
+  const postBody = marked.parse(splitMetadataContent[splitMetadataContent.length - 1]);
 
+  console.log(splitByMetadataTitle)
 
   return (<> 
   <Link to='/'>Return Home</Link>
-  <p>{html}</p>
-  {html}
-  <div
-  dangerouslySetInnerHTML={{ __html: html }}
+
+<h1></h1>
+<h2></h2>
+  <div dangerouslySetInnerHTML={{ __html: postBody }}
   />
   </>
   )

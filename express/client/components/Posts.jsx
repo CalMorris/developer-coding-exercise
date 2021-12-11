@@ -10,7 +10,6 @@ export default function Home () {
   useEffect(() => {
     getBlogPosts()
     .then(posts => {
-      console.log(posts)
       setBlogPosts(posts)})
     .catch(e => console.log(e))
   },[])
