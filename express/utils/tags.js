@@ -43,8 +43,9 @@ function getTopWords (bodyText, tagCount = 5) {
   //   keyValueArr.push( {`${key}: ${value}`} );
   // }
   
-  const sortKeyValues = keyValueArr.sort((a,b) => a[1] - b[1])
-  return sortKeyValues
+  const sortKeyValues = keyValueArr.sort((a,b) => b[1] - a[1])
+  const filterKeyValues = sortKeyValues.filter(arr => !stopWords.includes(arr[0]))
+  return filterKeyValues
   
 }
 
