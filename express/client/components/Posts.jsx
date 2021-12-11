@@ -20,7 +20,7 @@ export default function Home () {
   })
 
   return ( <>
-  <h1>Posts</h1>
+  <h1>Media Suite Blog Posts</h1>
   <p>{posts}</p>
   </>)
 }

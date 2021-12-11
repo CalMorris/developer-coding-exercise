@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {getBlogPost} from '../apis'
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
+import { marked } from 'marked'
+// import { Markup } from 'react-render-markup';
 
 
 export default function Post () {
@@ -15,9 +17,21 @@ export default function Post () {
     .catch(error => console.log(error))
   }, [])
 
+  const html = marked.parse(post);
+  console.log(post)
+
+  const splitMetadataParagraph = post.split('#')
+  console.log(typeof html)
+
+
+
   return (<> 
-  <p>this is a post </p>
-  <h2>{post}</h2>
+  <Link to='/'>Return Home</Link>
+  <p>{html}</p>
+  {html}
+  <div
+  dangerouslySetInnerHTML={{ __html: html }}
+  />
   </>
   )
 }
