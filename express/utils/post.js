@@ -8,9 +8,12 @@ function readPost (postName, postLocation = posts) {
   return fs.readFileSync(post, 'utf8');
 }
 
-// function getPostTags () {
-
-// }
+function getTitle (postName) {
+  const postFile = readPost(post)
+  const getMetadata = postFile.split('===')[1]
+  const splitMetaHeaders = getMetadata.split('\n')
+  return splitMetaHeaders[1].replace('Title: ', '')
+}
 
 function getContent (postName, postLocation = posts) {
   const fileContent = readPost(`${postName}.md`)
@@ -18,16 +21,13 @@ function getContent (postName, postLocation = posts) {
   const content = seperateMetaFromContent[seperateMetaFromContent.length - 1]
   return content
 }
-  
+
 function getPosts (postDir = posts) {
   const dir = path.join(__dirname, postDir)
   const postFiles = fs.readdirSync(dir)
 
   const titleSlug = postFiles.map(post => {
-    const readPostFile = readPost(post)
-    const getMetadata = readPostFile.split('===')[1]
-    const splitMetaHeaders = getMetadata.split('\n')
-    const title = splitMetaHeaders[1].replace('Title: ', '')
+    const title = getTitle(post)
     const slug = post.replace('.md', '')
     return {title, slug}
   })

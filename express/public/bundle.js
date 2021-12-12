@@ -121,7 +121,8 @@ function Post() {
     })["catch"](function (error) {
       return console.log(error);
     });
-  }, []);
+  }, []); // parse markdown
+
   var postHTML = marked__WEBPACK_IMPORTED_MODULE_2__.marked.parse(post);
   var tags = keywords === null || keywords === void 0 ? void 0 : keywords.map(function (tag) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {

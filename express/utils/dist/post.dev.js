@@ -13,9 +13,14 @@ function readPost(postName) {
   var postLocation = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : posts;
   var post = path.join(__dirname, postLocation, "".concat(postName));
   return fs.readFileSync(post, 'utf8');
-} // function getPostTags () {
-// }
+}
 
+function getTitle(postName) {
+  var postFile = readPost(post);
+  var getMetadata = postFile.split('===')[1];
+  var splitMetaHeaders = getMetadata.split('\n');
+  return splitMetaHeaders[1].replace('Title: ', '');
+}
 
 function getContent(postName) {
   var postLocation = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : posts;
@@ -30,10 +35,7 @@ function getPosts() {
   var dir = path.join(__dirname, postDir);
   var postFiles = fs.readdirSync(dir);
   var titleSlug = postFiles.map(function (post) {
-    var readPostFile = readPost(post);
-    var getMetadata = readPostFile.split('===')[1];
-    var splitMetaHeaders = getMetadata.split('\n');
-    var title = splitMetaHeaders[1].replace('Title: ', '');
+    var title = getTitle(post);
     var slug = post.replace('.md', '');
     return {
       title: title,
