@@ -12,7 +12,6 @@ function getPost (postName, postLocation = posts) {
   const fileContent = readPost(`${postName}.md`)
   const seperateMetaContent = fileContent.split('===')
   const content = seperateMetaContent[seperateMetaContent.length - 1]
-  // const tags = ['word1','word2','word3','word4','word5']
   const tags = getTopWords(content)
   return {post: {content, tags}}
 }

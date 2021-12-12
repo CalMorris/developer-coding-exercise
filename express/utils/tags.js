@@ -33,25 +33,17 @@ function getTopWords (bodyText, tagCount = 5) {
   // Write your own implementation
   const words = bodyText.split(' ')
 
-  let counts = {}
+  let wordCount = {}
   for (let i = 0; i < words.length; i++) {
-    counts[words[i]] = 1 + (counts[words[i]] || 0)
+    wordCount[words[i]] = 1 + (wordCount[words[i]] || 0)
   }
 
-  const keyValueArr = Object.entries(counts)
-  // for (const [key, value] of Object.entries(counts)) {
-  //   keyValueArr.push( {`${key}: ${value}`} );
-  // }
-  
+  const keyValueArr = Object.entries(wordCount)
   const sortKeyValues = keyValueArr.sort((a,b) => b[1] - a[1])
   const filterKeyValues = sortKeyValues.filter(arr => !stopWords.includes(arr[0]))
   
-  const topFiveTags = filterKeyValues.map((word, i) => {
-    if (i < 5) {
-      return word[0]
-    }
-  })
-  return topFiveTags
+  const topFiveTags = filterKeyValues.slice(0, tagCount)
+  return topFiveTags.map(word => word[0])
   
 }
 

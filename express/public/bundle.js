@@ -102,7 +102,7 @@ function Post() {
       post = _useState2[0],
       setPost = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
       keywords = _useState4[0],
       setKeywords = _useState4[1];
@@ -114,19 +114,23 @@ function Post() {
           tags = post.tags;
       setPost(content);
       setKeywords(tags);
-      console.log(tags);
     })["catch"](function (error) {
       return console.log(error);
     });
   }, []);
   var postHTML = marked__WEBPACK_IMPORTED_MODULE_2__.marked.parse(post);
+  var tags = keywords === null || keywords === void 0 ? void 0 : keywords.map(function (tag) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      key: tag
+    }, "".concat(tag, " "));
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
     to: "/"
   }, "Return Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     dangerouslySetInnerHTML: {
       __html: postHTML
     }
-  }));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Tags"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, tags));
 }
 
 /***/ }),
