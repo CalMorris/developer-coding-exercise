@@ -10,8 +10,8 @@ function readPost (postName, postLocation = posts) {
 
 function getPost (postName, postLocation = posts) {
   const fileContent = readPost(`${postName}.md`)
-  const seperateMetaContent = fileContent.split('===')
-  const content = seperateMetaContent[seperateMetaContent.length - 1]
+  const seperateMetaFromContent = fileContent.split('===')
+  const content = seperateMetaFromContent[seperateMetaFromContent.length - 1]
   const tags = getTopWords(content)
   return {post: {content, tags}}
 }
@@ -23,8 +23,8 @@ function getPosts (postDir = posts) {
   const titleSlug = postFiles.map(post => {
     const readPostFile = readPost(post)
     const getMetadata = readPostFile.split('===')[1]
-    const splitMetadata = getMetadata.split('\n')
-    const title = splitMetadata[1].replace('Title: ', '')
+    const splitMetaHeaders = getMetadata.split('\n')
+    const title = splitMetaHeaders[1].replace('Title: ', '')
     const slug = post.replace('.md', '')
     return {title, slug}
   })

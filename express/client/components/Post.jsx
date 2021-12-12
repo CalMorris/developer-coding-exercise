@@ -15,7 +15,6 @@ export default function Post () {
       const {content, tags} = post
       setPost(content)
       setKeywords(tags)
-
     })
     .catch(error => console.log(error))
   }, [])

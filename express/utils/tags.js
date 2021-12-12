@@ -29,19 +29,27 @@ const stopWords = [
  * @param {number} tagCount
  * @returns {[string]} - An array of the most frequently used non-Stopwords
  */
-function getTopWords (bodyText, tagCount = 5) {
-  // Write your own implementation
-  const words = bodyText.split(' ')
 
+function countWords(words) {
   let wordCount = {}
   for (let i = 0; i < words.length; i++) {
     wordCount[words[i]] = 1 + (wordCount[words[i]] || 0)
   }
+  return wordCount
+}
+
+
+function getTopWords (bodyText, tagCount = 5) {
+  const words = bodyText.split(' ')
+  let wordCount = countWords(words)
 
   const keyValueArr = Object.entries(wordCount)
   const sortKeyValues = keyValueArr.sort((a,b) => b[1] - a[1])
-  const filterKeyValues = sortKeyValues.filter(arr => !stopWords.includes(arr[0]))
-  
+  const filterKeyValues = sortKeyValues.filter(arr => {
+    const isStopword = stopWords.includes(arr[0])
+    return isStopword
+  })
+
   const topFiveTags = filterKeyValues.slice(0, tagCount)
   return topFiveTags.map(word => word[0])
   
