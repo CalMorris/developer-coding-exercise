@@ -3,12 +3,14 @@ const express = require('express')
 const app = express()
 const { getTopWords } = require('./utils/tags')
 const rootPostDir = './server/assets/posts' 
-const {getPost, getPosts} = require('./utils/post')
+const {getContent, getPosts} = require('./utils/post')
 
 app.get('/post/:slug', function (req, res) {
-    const postName = req.params.slug
-    const postContent= getPost(postName.slice(1))
-    res.json(postContent)
+    const {slug} = req.params
+    const content= getContent(slug)
+    const tags = getTopWords(content)
+    const post = { post: { content, tags } }
+    res.json(post)
 })
 
 app.get('/posts', function (req, res) {

@@ -30,13 +30,13 @@ const stopWords = [
  * @returns {[string]} - An array of the most frequently used non-Stopwords
  */
 
-function countWords(words) {
-  let wordCount = {}
-  for (let i = 0; i < words.length; i++) {
-    wordCount[words[i]] = 1 + (wordCount[words[i]] || 0)
-  }
-  return wordCount
-}
+// function countWords(words) {
+//   let wordCount = {}
+//   for (let i = 0; i < words.length; i++) {
+//     wordCount[words[i]] = 1 + (wordCount[words[i]] || 0)
+//   }
+//   return wordCount
+// }
 
 
 function getTopWords (bodyText, tagCount = 5) {

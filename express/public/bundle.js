@@ -17,13 +17,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(superagent__WEBPACK_IMPORTED_MODULE_0__);
 
 function getBlogPost(post) {
-  return superagent__WEBPACK_IMPORTED_MODULE_0___default().get("/post/:".concat(post)).then(function (res) {
+  return superagent__WEBPACK_IMPORTED_MODULE_0___default().get("/post/".concat(post)).then(function (res) {
     return res.body;
+  })["catch"](function (error) {
+    return console.log(error);
   });
 }
 function getBlogPosts() {
   return superagent__WEBPACK_IMPORTED_MODULE_0___default().get('/posts').then(function (res) {
     return res.body;
+  })["catch"](function (error) {
+    return console.log(error);
   });
 }
 
@@ -124,7 +128,7 @@ function Post() {
       key: tag
     }, "".concat(tag, " "));
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
     to: "/"
   }, "Return Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     dangerouslySetInnerHTML: {

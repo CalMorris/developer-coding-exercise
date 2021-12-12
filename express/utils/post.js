@@ -8,12 +8,15 @@ function readPost (postName, postLocation = posts) {
   return fs.readFileSync(post, 'utf8');
 }
 
-function getPost (postName, postLocation = posts) {
+// function getPostTags () {
+
+// }
+
+function getContent (postName, postLocation = posts) {
   const fileContent = readPost(`${postName}.md`)
   const seperateMetaFromContent = fileContent.split('===')
   const content = seperateMetaFromContent[seperateMetaFromContent.length - 1]
-  const tags = getTopWords(content)
-  return {post: {content, tags}}
+  return content
 }
   
 function getPosts (postDir = posts) {
@@ -34,5 +37,5 @@ function getPosts (postDir = posts) {
 
   module.exports = {
     getPosts,
-    getPost
+    getContent
   }

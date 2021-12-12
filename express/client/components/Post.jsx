@@ -22,11 +22,10 @@ export default function Post () {
   const postHTML = marked.parse(post);
   let tags = keywords?.map(tag => <span key={tag}>{`${tag} `}</span>)
 
-  return (<> 
+  return (<section>
     <Link to='/'>Return Home</Link>
     <div dangerouslySetInnerHTML={{ __html: postHTML }}/>
     <h2>Tags</h2>
     <p>{tags}</p>
-  </>
-  )
+  </section>)
 }
