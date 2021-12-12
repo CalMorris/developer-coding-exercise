@@ -30,31 +30,8 @@ const stopWords = [
  * @returns {[string]} - An array of the most frequently used non-Stopwords
  */
 
-// function countWords(words) {
-//   let wordCount = {}
-//   for (let i = 0; i < words.length; i++) {
-//     wordCount[words[i]] = 1 + (wordCount[words[i]] || 0)
-//   }
-//   return wordCount
-// }
-
-// this will fetch keywords but does not escape \ 
 function getTopWords (bodyText, tagCount = 5) {
-  // const words = bodyText.split(' ')
-  // let wordCount = countWords(words)
-
-  // const keyValueArr = Object.entries(wordCount)
-  // const sortKeyValues = keyValueArr.sort((a,b) => b[1] - a[1])
-
-  // const filterStopwords = sortKeyValues.filter(arr => {
-  //   const isStopword = stopWords.find(stopWord => stopWord.toLowerCase() !== arr[0].toLowerCase())
-  //   return isStopword
-  // })
-
-  // const topFiveTags = filterStopwords.slice(0, tagCount)
-  // return topFiveTags.map(word => word[0])
   return ['tags', 'go', 'here']
-  
 }
 
 module.exports = { getTopWords }

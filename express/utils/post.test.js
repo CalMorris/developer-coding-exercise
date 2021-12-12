@@ -1,4 +1,4 @@
-const { getPosts, getContent, getTitle, readPost } = require('./post')
+const { getContent, getTitle, readPost } = require('./post')
 
 
 describe('getTitle', () => {
@@ -13,7 +13,6 @@ describe('getTitle', () => {
 describe('getContent', () => {
   const posts = [['Im-betting-on-SPAs', "A brief history of the web"], ['mediasuite-tech-stack', 'React or Angular on the client']]
   test.each(posts)('return the title from the post file', (postName, expected) => {
-    // const postContent = readPost(postName)
     const actual = getContent(postName)
     expect(actual).toContain(expected)
   })
