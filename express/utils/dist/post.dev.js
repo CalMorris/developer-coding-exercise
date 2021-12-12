@@ -12,8 +12,7 @@ function readPost(postName) {
   return fs.readFileSync(post, 'utf8');
 }
 
-function getTitle(postFile) {
-  var post = readPost(postFile);
+function getTitle(post) {
   var getMetadata = post.split('===')[1];
   var getMetaHeaders = getMetadata.split('\n');
   return getMetaHeaders[1].replace('Title: ', '');
@@ -32,7 +31,8 @@ function getPosts() {
   var dir = path.join(__dirname, postDir);
   var postFiles = fs.readdirSync(dir);
   var titleSlug = postFiles.map(function (post) {
-    var title = getTitle(post);
+    var postContent = readPost(post);
+    var title = getTitle(postContent);
     var slug = post.replace('.md', '');
     return {
       title: title,
@@ -44,5 +44,7 @@ function getPosts() {
 
 module.exports = {
   getPosts: getPosts,
-  getContent: getContent
+  getContent: getContent,
+  getTitle: getTitle,
+  readPost: readPost
 };

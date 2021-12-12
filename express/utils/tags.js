@@ -38,7 +38,7 @@ const stopWords = [
 //   return wordCount
 // }
 
-
+// this will fetch keywords but does not escape \ 
 function getTopWords (bodyText, tagCount = 5) {
   // const words = bodyText.split(' ')
   // let wordCount = countWords(words)
@@ -50,8 +50,6 @@ function getTopWords (bodyText, tagCount = 5) {
   //   const isStopword = stopWords.find(stopWord => stopWord.toLowerCase() !== arr[0].toLowerCase())
   //   return isStopword
   // })
-
-  // console.log(filterStopwords)
 
   // const topFiveTags = filterStopwords.slice(0, tagCount)
   // return topFiveTags.map(word => word[0])

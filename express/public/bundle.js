@@ -121,7 +121,7 @@ function Post() {
     })["catch"](function (error) {
       return console.log(error);
     });
-  }, []); // parse markdown
+  }, []); // libary to parse markdown
 
   var postHTML = marked__WEBPACK_IMPORTED_MODULE_2__.marked.parse(post);
   var tags = keywords === null || keywords === void 0 ? void 0 : keywords.map(function (tag) {

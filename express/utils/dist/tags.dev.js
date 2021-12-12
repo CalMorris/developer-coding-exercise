@@ -17,6 +17,7 @@ var stopWords = ['#', '##', 'a', 'about', 'above', 'after', 'again', 'against', 
 //   }
 //   return wordCount
 // }
+// this will fetch keywords but does not escape \ 
 
 function getTopWords(bodyText) {
   var tagCount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5;
@@ -28,7 +29,6 @@ function getTopWords(bodyText) {
   //   const isStopword = stopWords.find(stopWord => stopWord.toLowerCase() !== arr[0].toLowerCase())
   //   return isStopword
   // })
-  // console.log(filterStopwords)
   // const topFiveTags = filterStopwords.slice(0, tagCount)
   // return topFiveTags.map(word => word[0])
   return ['tags', 'go', 'here'];

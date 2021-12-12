@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watchAll",
     "dev": "run-p dev:client dev:server",
     "dev:client": "npm run webpack -- --watch",
     "dev:server": "nodemon --watch server ./index.js",
