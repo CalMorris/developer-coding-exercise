@@ -6,20 +6,17 @@ var path = require('path');
 
 var posts = '../../assets/posts/';
 
-var _require = require('./tags'),
-    getTopWords = _require.getTopWords;
-
 function readPost(postName) {
   var postLocation = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : posts;
   var post = path.join(__dirname, postLocation, "".concat(postName));
   return fs.readFileSync(post, 'utf8');
 }
 
-function getTitle(postName) {
-  var postFile = readPost(post);
-  var getMetadata = postFile.split('===')[1];
-  var splitMetaHeaders = getMetadata.split('\n');
-  return splitMetaHeaders[1].replace('Title: ', '');
+function getTitle(postFile) {
+  var post = readPost(postFile);
+  var getMetadata = post.split('===')[1];
+  var getMetaHeaders = getMetadata.split('\n');
+  return getMetaHeaders[1].replace('Title: ', '');
 }
 
 function getContent(postName) {

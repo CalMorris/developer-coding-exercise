@@ -26,7 +26,7 @@ export default function Post () {
   return (<section>
     <Link to='/'>Return Home</Link>
     <div dangerouslySetInnerHTML={{ __html: postHTML }}/>
-    <h2>Tags</h2>
+    <h3>Tags</h3>
     <p>{tags}</p>
   </section>)
 }

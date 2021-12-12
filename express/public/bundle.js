@@ -135,7 +135,7 @@ function Post() {
     dangerouslySetInnerHTML: {
       __html: postHTML
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Tags"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, tags));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Tags"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, tags));
 }
 
 /***/ }),
