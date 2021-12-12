@@ -40,18 +40,22 @@ function countWords(words) {
 
 
 function getTopWords (bodyText, tagCount = 5) {
-  const words = bodyText.split(' ')
-  let wordCount = countWords(words)
+  // const words = bodyText.split(' ')
+  // let wordCount = countWords(words)
 
-  const keyValueArr = Object.entries(wordCount)
-  const sortKeyValues = keyValueArr.sort((a,b) => b[1] - a[1])
-  const filterKeyValues = sortKeyValues.filter(arr => {
-    const isStopword = stopWords.includes(arr[0])
-    return isStopword
-  })
+  // const keyValueArr = Object.entries(wordCount)
+  // const sortKeyValues = keyValueArr.sort((a,b) => b[1] - a[1])
 
-  const topFiveTags = filterKeyValues.slice(0, tagCount)
-  return topFiveTags.map(word => word[0])
+  // const filterStopwords = sortKeyValues.filter(arr => {
+  //   const isStopword = stopWords.find(stopWord => stopWord.toLowerCase() !== arr[0].toLowerCase())
+  //   return isStopword
+  // })
+
+  // console.log(filterStopwords)
+
+  // const topFiveTags = filterStopwords.slice(0, tagCount)
+  // return topFiveTags.map(word => word[0])
+  return ['tags', 'go', 'here']
   
 }
 
