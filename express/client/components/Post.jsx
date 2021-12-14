@@ -19,7 +19,7 @@ export default function Post () {
     .catch(error => console.log(error))
   }, [])
   
-  // libary to parse markdown
+  // libary function to parse markdown
   const postHTML = marked.parse(post);
   let tags = keywords?.map(tag => <span key={tag}>{`${tag} `}</span>)
 
